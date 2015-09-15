@@ -70,7 +70,7 @@ public class User extends Model {
     }
 
     public boolean isAdmin() {
-        return this.role.name.equals("admin");
+        return this.role.id == 2;
     }
 
     @Override
