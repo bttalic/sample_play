@@ -14,6 +14,7 @@ import play.*;
 import play.mvc.*;
 import play.mvc.Http.*;
 
+import static play.mvc.Results.badRequest;
 import static play.mvc.Results.notFound;
 
 /**
@@ -78,6 +79,11 @@ public class Global extends GlobalSettings {
     @Override
     public F.Promise<Result> onHandlerNotFound(Http.RequestHeader requestHeader) {
         return F.Promise.<Result>pure(notFound(views.html.notfound.render()));
+    }
+
+    @Override
+    public F.Promise<Result> onBadRequest(RequestHeader request, String error) {
+        return F.Promise.<Result>pure(badRequest(views.html.notfound.render()));
     }
 
 

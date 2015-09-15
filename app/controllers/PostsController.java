@@ -41,7 +41,7 @@ public class PostsController extends Controller {
     public Result show(int id){
         Post p = Post.find(id);
         if(p == null)
-            return notFound();
+            return notFound(views.html.notfound.render());
         else
             return ok(show.render(p));
     }
