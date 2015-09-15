@@ -88,6 +88,13 @@ public class User extends Model {
         return finder.all();
     }
 
+    public boolean update(){
+        lic static boolean deleteUser(String email){
+        if(!canDelete(email))
+            return false;
+        super.update();
+    }
+
     public static boolean deleteUser(String email){
         if(!canDelete(email))
             return false;
