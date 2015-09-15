@@ -1,0 +1,12 @@
+@(user: User)
+@main(user.email){
+
+    <div class="col-md-4">
+        <h3>@user.email</h3>
+        <h5>@user.role.name</h5>
+    </div>
+    <div class="col-md-8">
+        @views.html.post._list(user.posts)
+    </div>
+
+}

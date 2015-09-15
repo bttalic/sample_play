@@ -7,6 +7,14 @@ import models.User;
 import play.Application;
 import play.GlobalSettings;
 import play.Play;
+import play.libs.F;
+import play.mvc.Http;
+import play.mvc.Result;
+import play.*;
+import play.mvc.*;
+import play.mvc.Http.*;
+
+import static play.mvc.Results.notFound;
 
 /**
  * Created by benjamin on 14/09/15.
@@ -67,5 +75,9 @@ public class Global extends GlobalSettings {
 
     }
 
+    @Override
+    public F.Promise<Result> onHandlerNotFound(Http.RequestHeader requestHeader) {
+        return F.Promise.<Result>pure(notFound(views.html.notfound.render()));
 
+    }
 }

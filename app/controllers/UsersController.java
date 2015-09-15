@@ -10,6 +10,7 @@ import play.mvc.Result;
 import viewmodels.UserLoginViewModel;
 import viewmodels.UserViewModel;
 import views.html.user.login;
+import views.html.user.profile;
 import views.html.user.register;
 
 /**
@@ -70,7 +71,10 @@ public class UsersController extends Controller {
     }
 
     public Result profile(String email) {
-        return TODO;
+        User u = User.findByEmail(email);
+        if(u == null)
+            return notFound("No such user");
+        return ok(profile.render(u));
     }
 
     public Result logedinProfile() {
