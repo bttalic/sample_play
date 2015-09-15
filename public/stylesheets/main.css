@@ -5,3 +5,7 @@ body {
 a>img, .thumbnail>img {
     width: 100%;
 }
+
+.post-cover img {
+    width: 100%;
+}

@@ -1,0 +1,13 @@
+@(post: Post)
+@main(post.title){
+
+    <div class="post-cover">
+        <img src="@post.image.getSize(800, 600)" >
+    </div>
+
+    <h1 class="text-center"> @post.title </h1>
+    <article>
+        <p>@post.content</p>
+    </article>
+
+}

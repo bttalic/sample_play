@@ -12,6 +12,7 @@ import play.mvc.Http.MultipartFormData;
 import play.mvc.Result;
 import views.html.post._list;
 import views.html.post.create;
+import views.html.post.show;
 
 import java.io.File;
 import java.util.List;
@@ -35,6 +36,14 @@ public class PostsController extends Controller {
         postForm = postForm.fill(p);
 
         return ok(create.render(postForm));
+    }
+
+    public Result show(int id){
+        Post p = Post.find(id);
+        if(p == null)
+            return notFound("hello"+p.id);
+        else
+            return ok(show.render(p));
     }
 
     public Result createPost() {

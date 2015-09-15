@@ -20,6 +20,7 @@ GET           /posts/create                     controllers.PostsController.crea
 POST          /posts/create                     controllers.PostsController.createPost()
 GET           /posts/:offset                    controllers.PostsController.posts(offset: Integer)
 DELETE        /posts/delete/:id                 controllers.PostsController.delete(id: Integer)
+GET           /posts/show/:id                        controllers.PostsController.show(id: Integer)
 #should be removed
 GET           /posts/delete/:id                 controllers.PostsController.delete(id: Integer)
 
