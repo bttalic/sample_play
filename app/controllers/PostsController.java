@@ -57,16 +57,21 @@ public class PostsController extends Controller {
         if (RequestHelper.isAjax())
             return ok();
 
+        Post p = submitted.get();
+        
+        p.user = SessionHelper.getCurrentUser();
+
         MultipartFormData body = request().body().asMultipartFormData();
         MultipartFormData.FilePart filePart = body.getFile("image");
-        Logger.debug("Content type: " + filePart.getContentType());
-        Logger.debug("Key: " + filePart.getKey());
-        File image = filePart.getFile();
+        if(filePart != null){
+            Logger.debug("Content type: " + filePart.getContentType());
+            Logger.debug("Key: " + filePart.getKey());
+            File image = filePart.getFile();
+            p.image = Image.create(image);
+        }
 
 
-        Post p = submitted.get();
-        p.image = Image.create(image);
-        p.user = SessionHelper.getCurrentUser();
+        
         p.save();
 
         return redirect(routes.Application.index());

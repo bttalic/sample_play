@@ -89,11 +89,10 @@ public class User extends Model {
     }
 
 
-    public boolean update(){
+    public void update(){
         if(!canDelete(email))
-            return false;
+            return;
         super.update();
-        return true;
     }
 
     public static boolean deleteUser(String email){
