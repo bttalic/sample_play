@@ -1,0 +1,30 @@
+@(roles: List[Role])
+@main("Roles") {
+
+    <div class="col-md-12">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Role </th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(role <- roles) {
+                <tr>
+                    <td>
+                        <form action="@routes.AdminController.updateRole()" method="post">
+                            <input type="hidden" value="@role.id" name="id" />
+                            <input type="text" value="@role.name" name="name" />
+                            <input type="submit" value="Save Change" class="btn btn-warning btn-xs">
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </div>
+
+
+}

@@ -1,0 +1,34 @@
+@(posts: List[Post])
+    @main("Welcome to Play") {
+        <h1> Hello World</h1>
+
+        <div id="postList">
+        @views.html.post._list(posts)
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <button id="loadPosts" class="col-md-12 col-sm-12 btn btn-lg btn-info">More</button>
+
+    } {
+        <script src="@routes.Assets.versioned("javascripts/deleteConfirm.js")"></script>
+        <script>
+            $(document).ready(function() {
+                var offset = 0;
+
+
+                $('#loadPosts').click(function(){
+                    $.ajax({
+                        url: "/posts/"+offset,
+                        method: "get"
+                    }).success(function(response){
+                        $('#postList').append(response);
+                        offset++;
+                    }).error(function(response){
+                        if(response.status == 404)
+                            $("#loadPosts").prop('disabled', true);
+                    });
+                });
+            });
+        </script>
+    }

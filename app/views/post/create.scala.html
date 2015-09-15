@@ -1,0 +1,25 @@
+@(postForm: Form[Post])
+@views.html.main("Create Post"){
+
+    <form action="/posts/create" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" name="title" value="@postForm("title").value">
+        </div>
+
+        <div class="form-group">
+            <label>Content</label>
+            <input type="text" class="form-control" name="content" value="@postForm("content").value">
+        </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <input type="file" name="image">
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Create">
+
+    </form>
+
+}

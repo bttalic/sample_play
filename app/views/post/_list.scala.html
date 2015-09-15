@@ -1,0 +1,30 @@
+@import controllers.helpers.SessionHelper
+@(posts: List[Post])
+
+@if(posts != null) {
+    @for(post <- posts) {
+
+        <div class="post col-sm-6 col-md-4">
+            <div class="thumbnail">
+                @if(post.image != null) {
+                    <img src="@post.image.getSize(300, 300)" />
+                } else {
+                        <!-- this should be a local link -->
+                    <img src="http://4.bp.blogspot.com/_CHG2GRbeET8/SS3f-tcSNiI/AAAAAAAAJEk/qVdRYu1MLMs/s320/missing-715826.gif" alt="...">
+                }
+            <div class="caption">
+                <h3>@post.title</h3>
+                <p>@post.content</p>
+
+                <p>
+                    @if(SessionHelper.canDeletePost(post.id) ) {
+                        <a data-role="delete" data-delete-parent=".post" href="@routes.PostsController.delete(post.id)" class="btn btn-primary" role="button">
+                            Delete</a>
+                    }
+                    <a href="@routes.UsersController.profile(post.user.email)" class="btn btn-default" role="button">@post.user.email</a>
+                </p>
+            </div>
+            </div>
+        </div>
+    }
+}

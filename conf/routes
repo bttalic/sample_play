@@ -1,0 +1,37 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET           /                                 controllers.Application.index()
+
+
+#User
+GET           /register                         controllers.UsersController.registerView()
+POST          /register                         controllers.UsersController.registerUser()
+GET           /login                            controllers.UsersController.loginView()
+POST          /login                            controllers.UsersController.loginUser()
+GET           /logout                           controllers.UsersController.logout()
+GET           /profile/:email                   controllers.UsersController.profile(email: String)
+GET           /profile                          controllers.UsersController.logedinProfile()
+
+#Post
+GET           /posts/create                     controllers.PostsController.createPostView()
+POST          /posts/create                     controllers.PostsController.createPost()
+GET           /posts/:offset                    controllers.PostsController.posts(offset: Integer)
+DELETE        /posts/delete/:id                 controllers.PostsController.delete(id: Integer)
+#should be removed
+GET           /posts/delete/:id                 controllers.PostsController.delete(id: Integer)
+
+#admin
+GET           /admin/users/all                  controllers.AdminController.showUsers()
+POST          /admin/roles/change               controllers.AdminController.changeRole()
+DELETE        /admin/users/delete/:email        controllers.AdminController.deleteUser(email: String)
+#should be removed
+GET           /admin/users/delete/:email        controllers.AdminController.deleteUser(email: String)
+GET           /admin/roles/all                  controllers.AdminController.showRoles()
+POST          /admin/role/update                controllers.AdminController.updateRole()
+GET           /admin/posts/all                  controllers.AdminController.showPosts()
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)

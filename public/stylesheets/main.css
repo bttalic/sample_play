@@ -1,0 +1,7 @@
+body {
+    padding-top: 60px;
+}
+
+a>img, .thumbnail>img {
+    width: 100%;
+}

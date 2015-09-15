@@ -1,0 +1,32 @@
+@(posts: List[Post])
+@main("Posts") {
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Title </th>
+                <th> Author </th>
+                <th> Content </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for(post <- posts) {
+                <tr>
+                <td> @post.title </td>
+                <td> <a href="@routes.UsersController.profile(post.user.email)"> @post.user.email </a> </td>
+                <td> @post.shortContent() </td>
+                <td>
+                    <a data-role="delete"  data-delete-parent="tr" href="@routes.PostsController.delete(post.id)" class="btn btn-danger" role="button">
+                            Delete</a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+} {
+    <script src="@routes.Assets.versioned("javascripts/deleteConfirm.js")"></script>
+}
