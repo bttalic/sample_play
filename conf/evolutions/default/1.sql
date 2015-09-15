@@ -32,6 +32,8 @@ create table ApplicationUser (
   email                     varchar(255) not null,
   password                  varchar(255),
   role_id                   integer,
+  image_id                  integer,
+  constraint uq_ApplicationUser_image_id unique (image_id),
   constraint pk_ApplicationUser primary key (email))
 ;
 
@@ -49,6 +51,8 @@ alter table post add constraint fk_post_image_2 foreign key (image_id) reference
 create index ix_post_image_2 on post (image_id);
 alter table ApplicationUser add constraint fk_ApplicationUser_role_3 foreign key (role_id) references role (id) on delete restrict on update restrict;
 create index ix_ApplicationUser_role_3 on ApplicationUser (role_id);
+alter table ApplicationUser add constraint fk_ApplicationUser_image_4 foreign key (image_id) references image (id) on delete restrict on update restrict;
+create index ix_ApplicationUser_image_4 on ApplicationUser (image_id);
 
 
 

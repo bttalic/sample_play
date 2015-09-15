@@ -86,6 +86,15 @@ public class Image extends Model {
         return url;
     }
 
+    public String getThumbnail(){
+        String url = cloudinary.url().format("png")
+                .transformation(
+                        new Transformation().width(150).height(150).crop("thumb").gravity("face").radius("max")
+                )
+                .generate(public_id);
+        return url;
+    }
+
     public void deleteImage() {
 
         try {

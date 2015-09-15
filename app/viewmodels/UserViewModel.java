@@ -1,5 +1,6 @@
 package viewmodels;
 
+import models.Image;
 import play.data.validation.Constraints;
 import play.data.validation.ValidationError;
 
@@ -19,6 +20,8 @@ public class UserViewModel {
     public String password;
 
     public String passwordConfirm;
+
+    public Image image;
 
 
     public List<ValidationError> validate() {

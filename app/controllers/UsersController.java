@@ -2,16 +2,21 @@ package controllers;
 
 import controllers.helpers.RequestHelper;
 import controllers.helpers.SessionHelper;
+import models.Image;
 import models.Role;
 import models.User;
+import play.Logger;
 import play.data.Form;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import viewmodels.UserLoginViewModel;
 import viewmodels.UserViewModel;
 import views.html.user.login;
 import views.html.user.profile;
 import views.html.user.register;
+
+import java.io.File;
 
 /**
  * Created by benjamin on 14/09/15.
@@ -42,6 +47,16 @@ public class UsersController extends Controller {
             return ok();
         User u = User.userFromView(submited.get());
         u.role = Role.getUserRole();
+
+        Http.MultipartFormData body = request().body().asMultipartFormData();
+        Http.MultipartFormData.FilePart filePart = body.getFile("image");
+        if(filePart != null){
+            Logger.debug("Content type: " + filePart.getContentType());
+            Logger.debug("Key: " + filePart.getKey());
+            File image = filePart.getFile();
+            u.image = Image.create(image);
+        }
+
         u.save();
         loginUser(u);
         return redirect(routes.Application.index());

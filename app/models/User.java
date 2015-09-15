@@ -33,6 +33,8 @@ public class User extends Model {
     @ManyToOne(cascade = CascadeType.PERSIST)
     public Role role;
 
+    @OneToOne
+    public Image image;
 
     private static Finder<String, User> finder = new Finder<String, User>(User.class);
 
@@ -50,6 +52,7 @@ public class User extends Model {
         User u = new User();
         u.email = register.email;
         u.password = register.password;
+        u.image = register.image;
         return u;
     }
 
